@@ -3,4 +3,12 @@ $ mkdir learngit
 $ cd learngit
 $ pwd
 /Users/michael/learngit
-2，
+2，初始化仓库
+git init
+3，添加文件到仓库
+git add learngit.txt
+4，把文件提交到仓库
+git commit -m "create learngit"
+5，查看运行结果
+git status
+6，查看修改内容
