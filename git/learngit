@@ -12,3 +12,23 @@ git commit -m "create learngit"
 5，查看运行结果
 git status
 6，查看修改内容
+git diff
+7，查看日志
+git log
+git log --pretty=oneline 单行显示
+8，退回版本
+git reset --hard HEAD^
+上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+9，退回指定id版本
+git reset --hard 3628164
+10，查看每一条指令
+git reflog
+11，撤销修改
+git checkout -- readme.txt
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+12，撤销暂存区的修改，回到工作区
+git reset HEAD readme.txt
+13，删除某一文件
+git rm test.txt
