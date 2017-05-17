@@ -48,5 +48,83 @@ $ git checkout dev
 Switched to branch 'dev'
 19，查看当前分支
 git branch
-
-
+20，把dev分支合并到master分支上
+git merge dev
+21，删除dev分支
+git branch -d dev
+22，解决冲突
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成
+用git log --graph命令可以看到分支合并图
+23，分支管理策略
+准备合并dev分支，请注意--no-ff参数，表示禁用Fast forward：
+$ git merge --no-ff -m "merge with no-ff" dev
+合并后，我们用git log看看分支历史：
+$ git log --graph --pretty=oneline --abbrev-commit
+24，bug分支
+缓存当前分区
+git stash
+查看缓存区
+git stash list
+恢复缓存区
+  1）一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+  2）另一种方式是用git stash pop，恢复的同时把stash内容也删了：
+25，Feature分支
+开发一个新feature，最好新建一个分支；
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除
+26，多人协作
+要查看远程库的信息，用git remote
+用git remote -v显示更详细的信息
+ 1）推送分支
+ git push origin master
+ 2）远程库克隆只能克隆master分支
+ 3）创建远程origin的dev分支到本地
+ git checkout -b dev origin/dev
+ 4）提交有冲突
+ 用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送
+ 5）本地dev分支和远程库dev分支关联
+ git branch --set-upstream dev origin/dev
+27，创建标签
+git tag v1.0 该标签是最新id的标签
+查看标签
+git tag 
+查看历史提交记录
+git log --pretty=oneline --abbrev-commit
+在指定id上打上标签
+git tag v0.9 6224937
+查看标签信息
+git show v0.9
+还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+$ git tag -a v0.1 -m "version 0.1 released" 3628164
+用命令git show <tagname>可以看到说明文字：
+$ git show v0.1
+28，操作标签
+删除标签
+git tag -d v0.1
+推送某个标签到远程
+git push origin v1.0
+一次性推送全部尚未推送到远程的本地标签
+git push origin --tags
+删除推送到远程的标签
+ 1）本地删
+ git tag -d v0.9
+ 2）远程删
+ git push origin :refs/tags/v0.9
+29，忽略特殊文件
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件
+GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：https://github.com/github/gitignore
+忽略操作系统自动生成的文件，比如缩略图等；
+忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；
+忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。
+强制添加忽略的文件
+git add -f App.class
+查看忽略文件对应的内容
+git check-ignore -v App.class
+30，配置别名
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.br branch
+每个仓库的Git配置文件都放在.git/config文件中
+当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig
+31，搭建git服务器
+Linux中搭建暂定
