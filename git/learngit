@@ -38,3 +38,15 @@ ssh-keygen -t rsa -C "sangediandiandian@gmail.com"
 git remote add orLearn git@github.com:sangediandiandian/learn
 16，推送本地内容到远程库
 git push -u orLearn master
+17，从远程库克隆
+git clone git@github.com:sangediandiandian/克隆的仓库名
+18，创建并切换到该分支
+git checkout -b 分支名
+git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+$ git branch dev
+$ git checkout dev
+Switched to branch 'dev'
+19，查看当前分支
+git branch
+
+
